@@ -136,15 +136,9 @@ namespace PortAudio.Net
     public class PaBuffer<T>: PaBuffer where T: unmanaged
     {
 
-        #if NETCOREAPP
-
         /// <summary>
         /// Gets a span for the underlying memory backing the buffer.
         /// </summary>
-        /// <remarks>
-        /// Due to its safety and efficiency, <see cref="Span<T>"/> is the preferred means of accessing the memory.
-        /// However, this property is not available in .NET Framework, only .NET Core.
-        /// </remarks>
         public Span<T> Span
         {
             get
@@ -155,8 +149,6 @@ namespace PortAudio.Net
                 }
             }
         }
-
-        #endif
 
         private unsafe int Size => Channels * Frames * sizeof(T);
 
